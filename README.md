@@ -3,7 +3,11 @@ This is my mvc project for assignment 1 contains two tables about NBA teams and 
 </h1>
 <p>
 I created this project to learn a aps.net web app.
+<<<<<<< HEAD
 LINK: https://mvcyangsustore.azurewebsites.net/
+=======
+LINK:   https://mvcyangsustore.azurewebsites.net
+>>>>>>> commit
 
 </p>
 <p>
