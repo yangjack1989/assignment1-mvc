@@ -9,11 +9,11 @@ using System.Web.Mvc;
 using Assignemnt1_project.Models;
 
 namespace Assignemnt1_project.Controllers
-{
+{   [Authorize]
     public class teamsController : Controller
     {
         private nbaModel db = new nbaModel();
-
+        [AllowAnonymous]
         // GET: teams
         public ActionResult Index()
         {

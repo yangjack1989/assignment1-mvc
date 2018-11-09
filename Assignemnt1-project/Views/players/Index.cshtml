@@ -6,10 +6,10 @@
 }
 
 <h2 >Players Table</h2>
-
-<p>
+ @if(User.Identity.IsAuthenticated)
+ {<p>
     @Html.ActionLink("Create New", "Create")
-<p>
+</p>}
 <table class="table table-hover table-striped">
     <tr>
         <th>
@@ -65,11 +65,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.injury)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.player_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.player_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.player_id })
+        @if (User.Identity.IsAuthenticated)
+        {<td>
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.player_id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.player_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.player_id })
         </td>
+        }
     </tr>
 }
 

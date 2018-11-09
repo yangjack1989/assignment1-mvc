@@ -4,6 +4,7 @@ This is my mvc project for assignment 1 contains two tables about NBA teams and 
 <p>
 I created this project to learn a aps.net web app.
 
+
 LINK: https://mvcyangsustore.azurewebsites.net/
 
 
@@ -11,4 +12,5 @@ LINK: https://mvcyangsustore.azurewebsites.net/
 <p>
 I have changed web theme to Darkly version by downloading boostrap.css from https://bootswatch.com/ 
 I also add some table style on my tables like hover;
+I have added authentification 
 </P>

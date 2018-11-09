@@ -9,18 +9,18 @@ using System.Web.Mvc;
 using Assignemnt1_project.Models;
 
 namespace Assignemnt1_project.Controllers
-{
+{   [Authorize]//[Authorize (Roles = "Administrator")]
     public class playersController : Controller
     {
         private nbaModel db = new nbaModel();
-
+        [AllowAnonymous]
         // GET: players
         public ActionResult Index()
         {
             var players = db.players.Include(p => p.team);
             return View(players.ToList());
         }
-
+      
         // GET: players/Details/5
         public ActionResult Details(int? id)
         {

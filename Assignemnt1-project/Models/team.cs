@@ -18,6 +18,7 @@ namespace Assignemnt1_project.Models
         public int team_id { get; set; }
 
         [StringLength(50)]
+        [Display(Name="Organization")]
         public string team_name { get; set; }
 
         [StringLength(20)]
