@@ -48,7 +48,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.lost)
         </td>
-        @if (User.IsInRole("Administrator"))
+        
+        @if (User.Identity.IsAuthenticated)
         {
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.team_id }) |
