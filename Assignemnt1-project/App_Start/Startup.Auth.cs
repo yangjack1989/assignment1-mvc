@@ -47,8 +47,8 @@ namespace Assignemnt1_project
 
             // Uncomment the following lines to enable logging in with third party login providers
             app.UseMicrosoftAccountAuthentication(
-                clientId:System.Configuration.ConfigurationManager.AppSettings["MicrosoftId"],
-                clientSecret: System.Configuration.ConfigurationManager.AppSettings["MicrosoftSecret"] 
+                clientId:System.Configuration.ConfigurationManager.AppSettings["MicrosoftClientId"],
+                clientSecret: System.Configuration.ConfigurationManager.AppSettings["MicrosoftClientSecret"] 
                 );
 
             //app.UseTwitterAuthentication(
