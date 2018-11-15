@@ -7,6 +7,10 @@ I created this project to learn a aps.net web app.
 
 LINK: https://mvcyangsustore.azurewebsites.net/
 
+Users can register an account to log in this websit, also they can use their Google, Microsoft Account
+
+account: rich@gc.ca / Abcd123$
+
 
 </p>
 <p>
