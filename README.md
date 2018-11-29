@@ -11,6 +11,8 @@ Users can register an account to log in this websit, also they can use their Goo
 
 account: rich@gc.ca / Abcd123$
 
+add unit tests
+
 
 </p>
 <p>
