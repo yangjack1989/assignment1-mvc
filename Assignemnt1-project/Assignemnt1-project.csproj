@@ -200,7 +200,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EFplayers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IPlayersMock.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\nbaModel.cs" />
     <Compile Include="Models\player.cs" />
