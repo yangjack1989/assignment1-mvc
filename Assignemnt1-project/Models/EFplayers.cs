@@ -10,7 +10,7 @@ namespace Assignemnt1_project.Models
         private nbaModel db = new nbaModel();
         public IQueryable<player> players { get { return db.players; } }
 
-       
+        public IQueryable<team> teams { get { return db.teams; } }
 
         public void Delet(player p)
         {

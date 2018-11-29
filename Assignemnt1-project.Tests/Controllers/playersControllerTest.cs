@@ -22,19 +22,19 @@ namespace Assignemnt1_project.Tests.Controllers
 
         public void TestInitialize()
         {
-            //this will run before each individual test
-            //create a new mock data oject to hold a fale list of players
+            //this runs before each individual test
+            //create a new mock data oject to hold a fake list of players
             mock = new Mock<IPlayersMock>();
             //populate mock list
             players = new List<player>
             {
-                new player{player_id=100,first_name="Rudy",last_name="Gay",
+                new player{player_id=50,first_name="Rudy",last_name="Gay",
                            salary=8000000,position="Forward",points_per_game=13,
-                           rebonds_per_game =10,injury="no",team_id=1},
-                 new player{player_id=200,first_name="Patty",last_name="Mills",
+                           rebonds_per_game =10,injury="no",team_id=1 },
+                 new player{player_id=51,first_name="Patty",last_name="Mills",
                            salary=9000000,position="Guard",points_per_game=10,
                            rebonds_per_game =3,injury="no",team_id=1},
-                 new player{player_id=300,first_name="Bryn",last_name="Forbes",
+                 new player{player_id=52,first_name="Bryn",last_name="Forbes",
                            salary=2000000,position="Guard",points_per_game=11,
                            rebonds_per_game =4,injury="no",team_id=1}
             };
@@ -61,6 +61,46 @@ namespace Assignemnt1_project.Tests.Controllers
             var result = (List<player>)((ViewResult)controller.Index()).Model;
             //assert
             CollectionAssert.AreEqual(players, result);
+        }
+
+        //get players/details
+        [TestMethod]
+        public void DetailNoIdError()
+        {
+            ViewResult result = (ViewResult)controller.Details(null);
+            Assert.AreEqual("Error", result.ViewName);
+        }
+        [TestMethod]
+        public void DetailInvaldIdError()
+        {
+            ViewResult result = (ViewResult)controller.Details(1000);
+            Assert.AreEqual("Error", result.ViewName);
+        }
+        [TestMethod]
+        public void DetailsValidIdView()
+        {
+            ViewResult result = (ViewResult)controller.Details(50);
+            Assert.AreEqual("Details", result.ViewName);
+
+        }
+        [TestMethod]
+        public void DetailsValidIdLoadsPlayers()
+        {
+            player result = (player)((ViewResult)controller.Details(50)).Model;
+            Assert.AreEqual(players[0], result);
+        }
+
+        //get:edit unit test
+        [TestMethod]
+        public void EditNoId()
+        {
+            ViewResult result = (ViewResult)controller.Edit(null);
+            Assert.AreEqual("Error", result.ViewName);
+        }
+        public void EditInvaidId()
+        {
+            ViewResult result = (ViewResult)controller.Edit(1000);
+            Assert.AreEqual("Error", result.ViewName);
         }
     }
 }

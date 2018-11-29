@@ -35,21 +35,28 @@ namespace Assignemnt1_project.Controllers
             //return View(players.ToList());
             return View("Index",players.ToList());
         }
-      
-        // GET: players/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    player player = db.players.Find(id);
-        //    if (player == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(player);
-        //}
+
+       // GET: players/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                //scaffold code
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
+            }
+            //old scaffold does not work with mock
+            //player player = db.players.Find(id);
+            //new code work for ef and mock
+            player player = db.players.SingleOrDefault(p => p.player_id == id);
+
+            if (player == null)
+            {   // old scaffold code
+                //return HttpNotFound();
+                return View("Error");
+            }
+            return View("Details",player);
+        }
 
         //// GET: players/Create
         //public ActionResult Create()
@@ -77,20 +84,23 @@ namespace Assignemnt1_project.Controllers
         //}
 
         //// GET: players/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    player player = db.players.Find(id);
-        //    if (player == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.team_id = new SelectList(db.teams, "team_id", "team_name", player.team_id);
-        //    return View(player);
-        //}
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
+            }
+            //player player = db.players.Find(id);
+            player player = db.players.SingleOrDefault(p => p.player_id == id);
+            if (player == null)
+            {
+                //return HttpNotFound();
+                return View("Error");
+            }
+            ViewBag.team_id = new SelectList(db.teams, "team_id", "team_name", player.team_id);
+            return View(player);
+        }
 
         //// POST: players/Edit/5
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
