@@ -89,18 +89,75 @@ namespace Assignemnt1_project.Tests.Controllers
             player result = (player)((ViewResult)controller.Details(50)).Model;
             Assert.AreEqual(players[0], result);
         }
+        //get:create unit tests
+        [TestMethod]
+        public void CreateView()
+        {
+            ViewResult result = (ViewResult)controller.Create();
+            Assert.AreEqual("Create",result.ViewName);
+        }
+        [TestMethod]
+        public void LoadTeamId()
+        {
+            ViewResult result = (ViewResult)controller.Create();
+            Assert.IsNotNull(result.ViewBag.team_id);
+        }
 
         //get:edit unit test
         [TestMethod]
         public void EditNoId()
         {
-            ViewResult result = (ViewResult)controller.Edit(null);
+            int? id = null;
+            ViewResult result = (ViewResult)controller.Edit(id);
             Assert.AreEqual("Error", result.ViewName);
         }
+        [TestMethod]
         public void EditInvaidId()
         {
             ViewResult result = (ViewResult)controller.Edit(1000);
             Assert.AreEqual("Error", result.ViewName);
         }
+        [TestMethod]
+        public void EditViewBagTeamId()
+        {
+            ViewResult result = (ViewResult)controller.Edit(50);
+            Assert.IsNotNull(result.ViewBag.team_id);
+         
+        }
+        [TestMethod]
+        public void EditValidIdView()
+        {
+            ViewResult result= (ViewResult)controller.Edit(50);
+            Assert.AreEqual("Edit", result.ViewName);
+        }
+        [TestMethod]
+        public void EditValidIdPlayer()
+        {
+            player result = (player)((ViewResult)controller.Edit(50)).Model;
+            Assert.AreEqual(players[0], result);
+        }
+
+        // get: delete 
+        [TestMethod]
+        public void DeleteNoId()
+        {
+            ViewResult result = (ViewResult)controller.Delete(null);
+            Assert.AreEqual("Error", result.ViewName);
+        }
+        [TestMethod]
+        public void DeleteInvalidId()
+        {
+            ViewResult result = (ViewResult)controller.Delete(23445);
+            Assert.AreEqual("Error",result.ViewName);
+        }
+
+
+
+
+
+
+
+
+
     }
 }

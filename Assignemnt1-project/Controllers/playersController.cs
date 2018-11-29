@@ -59,11 +59,11 @@ namespace Assignemnt1_project.Controllers
         }
 
         //// GET: players/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.team_id = new SelectList(db.teams, "team_id", "team_name");
-        //    return View();
-        //}
+        public ActionResult Create()
+        {
+            ViewBag.team_id = new SelectList(db.teams, "team_id", "team_name");
+            return View("Create");
+        }
 
         //// POST: players/Create
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -99,40 +99,44 @@ namespace Assignemnt1_project.Controllers
                 return View("Error");
             }
             ViewBag.team_id = new SelectList(db.teams, "team_id", "team_name", player.team_id);
-            return View(player);
+            return View("Edit",player);
         }
 
         //// POST: players/Edit/5
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "player_id,first_name,last_name,salary,position,points_per_game,rebonds_per_game,injury,team_id")] player player)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(player).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.team_id = new SelectList(db.teams, "team_id", "team_name", player.team_id);
-        //    return View(player);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "player_id,first_name,last_name,salary,position,points_per_game,rebonds_per_game,injury,team_id")] player player)
+        {
+            if (ModelState.IsValid)
+            {
+                // db.Entry(player).State = EntityState.Modified;
+                // db.SaveChanges();
+                db.Save(player);
+                return RedirectToAction("Index");
+            }
+            ViewBag.team_id = new SelectList(db.teams, "team_id", "team_name", player.team_id);
+            return View(player);
+        }
 
         //// GET: players/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    player player = db.players.Find(id);
-        //    if (player == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(player);
-        //}
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
+            }
+            //player player = db.players.Find(id);
+            player player = db.players.SingleOrDefault(p => p.player_id == id);
+            if (player == null)
+            {
+                // return HttpNotFound();
+                return View("Error");
+            }
+            return View(player);
+        }
 
         //// POST: players/Delete/5
         //[HttpPost, ActionName("Delete")]
